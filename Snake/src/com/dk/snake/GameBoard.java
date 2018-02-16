@@ -1,17 +1,14 @@
 package com.dk.snake;
 
-import java.util.Arrays;
-
 public class GameBoard {
 	Block[][] playGround;
-
-	int nbLine;
-	int nbCol;
+	Wall wall = new Wall("w");
+	Fruit fruit = new Fruit("f");
 	
 	public GameBoard(int nbLine, int nbCol) {
+		
 		playGround = new Block[nbLine][nbCol];
-		Wall wall = new Wall("w");
-
+		
 		// Remplir premier ligne
 		for (int i = 0; i < nbCol; i++) {
 			playGround[0][i] = wall;
@@ -31,19 +28,31 @@ public class GameBoard {
 		for (int j = 0; j < nbLine; j++) {
 			playGround[j][nbCol - 1] = wall;
 		}
+		
+		this.setFruit(fruit);
 	}
-
+	
+	// Creation fruit
+	public void setFruit(Fruit fruit) {
+		Block[][] pg = this.getPlayGround();
+		if (pg[1][1] == null) {
+			pg[1][1] = fruit;
+		}
+	}
+	
 	public Block[][] getPlayGround() {
 		return playGround;
 	}
 
 	public String toString() {
 		String res = "";
-		for (int i = 0; i < nbCol; i++) {
-			
+		for (Block[] blocks : playGround) {
+			for (Block block : blocks) {
+				if (block != null) {
+					res += block.getSymbol();
+				}
+			}
 		}
-		
-		
 		return res;
 	}
 }
