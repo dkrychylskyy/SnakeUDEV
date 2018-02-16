@@ -6,9 +6,4 @@ public class Wall extends Block{
 		super();
 		this.symbol = symbol;
 	}
-
-	public String getSymbol() {
-		return symbol;
-	}
-	
 }
