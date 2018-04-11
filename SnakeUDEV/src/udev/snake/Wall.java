@@ -1,5 +1,9 @@
 package udev.snake;
 
-public class Wall {
-
+public class Wall extends Block{
+	
+	public Wall(String symbol) {
+		super();
+		this.symbol = symbol;
+	}
 }
